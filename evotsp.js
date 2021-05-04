@@ -334,6 +334,10 @@
       "method" : "POST",
       "data" : `{\"routeId\": \"${parent.routeId}\", \"lengthStoreThreshold\": ${lengthStoreThreshold}, \"numChildren\": ${numChildren}}`,
     }).done((children) => cb(null, children))
+        .fail((jqHXR, textStatus, err) => {
+            console.error("Problem with makeChildren AJAX call: " + textStatus);
+            cb(err);
+        });
   }
 
   // Get the full details of the specified route. You should largely
@@ -345,9 +349,13 @@
       "url" : url,
       "method": "GET",
     }).done(function (data) {
-      const route = data.Item;
-      callback(route);
-    });
+      //const route = data.Item;
+      callback(data);
+    })
+  .fail((jqHXR, textStatus, err) => {
+          console.error("Problem with getRouteById AJAX call: " + textStatus);
+          callback(err);
+      });
   }
 
   // Get city data (names, locations, etc.) from your new Lambda that returns
@@ -460,6 +468,8 @@
     getRouteById(routeId, processNewRoute);
 
     function processNewRoute(route) {
+        //console.log(JSON.stringify(best));
+        //console.log(JSON.stringify(route));
       // We need to check that this route is _still_ the
       // best route. Thanks to asynchrony, we might have
       // updated `best` to an even better route between
