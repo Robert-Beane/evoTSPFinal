@@ -120,16 +120,15 @@
   }
 
   function randomRoute(runId, generation, cb) {
-    AWSAjax(
-      {
+    $.ajax({
+      method: 'POST',
+      url: baseUrl + '/routes',
+      data: JSON.stringify({
         runId: runId,
         generation: generation,
-        lengthStoreThreshold: lengthStoreThreshold,
-      },
-      "/routes",
-      displayRoute,
-      ["generating random route", "when creating a random route"]
-    )
+        lengthStoreThreshold: lengthStoreThreshold
+      })})
+
     // If the Ajax call succeeds, return the newly generated route.
     .done((newRoute) => { cb(null, newRoute); })
     // If the Ajax call fails, print a message and pass the error up through
@@ -296,7 +295,21 @@
   // ensure that the best routes that you get from the HTTP call will
   // be passed along in the `runGeneration` waterfall. 
   function getBestRoutes(generation, callback) {
-    // FILL THIS IN
+    const numParents = $('#num-parents').val();
+    const runId = $('#runId-text-field').val();
+    //const runGen = runId + '#' + generation;
+    const url = baseUrl+`/best?runId=${runId}&generation=${generation}&numToReturn=${numParents}`;
+    $.ajax({
+      "url": url,
+      "method": "GET",
+    })
+
+    .done((bestRoutes) => {callback(null, bestRoutes); })
+
+        .fail((jqHXR, textStatus, err) => {
+          console.error("Problem with getBestRoutes AJAX call: " + textStatus);
+          callback(err);
+        });
   }
 
   // Create the specified number of children by mutating the given
@@ -314,21 +327,40 @@
   // as the `success` callback function in your Ajax call to make sure
   // the children pass down through the `runGeneration` waterfall.
   function makeChildren(parent, numChildren, generation, cb) {
-    // FILL THIS IN
+    //const url = baseUrl+`/mutateroute?routeId=${parent.routeId}&lengthStoreThreshold=${lengthStoreThreshold}&numChildren=${numChildren}`;
+    const url = baseUrl+`/mutateroute`;
+    $.ajax({
+      "url" : url,
+      "method" : "POST",
+      "data" : `{\"routeId\": \"${parent.routeId}\", \"lengthStoreThreshold\": ${lengthStoreThreshold}, \"numChildren\": ${numChildren}}`,
+    }).done((children) => cb(null, children))
   }
 
   // Get the full details of the specified route. You should largely
   // have this done from the previous exercise. Make sure you pass
   // `callback` as the `success` callback function in the Ajax call.
   function getRouteById(routeId, callback) {
-    // FILL THIS IN
+    const url = baseUrl+`/routes/${routeId}`;
+    $.ajax({
+      "url" : url,
+      "method": "GET",
+    }).done(function (data) {
+      const route = data.Item;
+      callback(route);
+    });
   }
 
   // Get city data (names, locations, etc.) from your new Lambda that returns
   // that information. Make sure you pass `callback` as the `success` callback
   // function in the Ajax call.
   function fetchCityData(callback) {
-    // FILL THIS IN
+    const url = baseUrl+`/city-data`;
+    $.ajax({
+      "url" : url,
+      "method" : "GET",
+    }).done(function (data) {
+      callback(data);
+    });
   }
 
   ////////////////////////////////////////////////////////////
@@ -372,8 +404,14 @@
   // We just appended this as an `<li>` to the `new-route-list`
   // element in the HTML.
   function displayRoute(result) {
-    // FILL THIS IN
-  }
+    $("#best-length").text(best.len);
+    $("#best-path").text(JSON.stringify(best.bestPath));
+    $("#best-routeId").text(best.routeId);
+    $("#best-route-cities").text("");
+    best.bestPath.forEach((index) => {
+      const cityName = cityData[index].properties.name;
+      $("#best-route-cities").append(`<li>${cityName}</li>`);
+    });  }
 
   // Display the best routes (length and IDs) in some way.
   // We just appended each route's info as an `<li>` to
@@ -386,7 +424,9 @@
   // so the array of best routes is pass along through
   // the waterfall in `runGeneration`.
   function displayBestRoutes(bestRoutes, dbp_cb) {
-    // FILL THIS IN
+    $("#best-route-list").append(`<li>Route: ${bestRoutes[0].route}.
+    Length: ${bestRoutes[0].len}. RouteId: ${bestRoutes[0].routeId} </li>`);
+    dbp_cb(null, bestRoutes);
   }
 
   ////////////////////////////////////////////////////////////
