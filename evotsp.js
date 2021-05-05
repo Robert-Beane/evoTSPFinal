@@ -102,7 +102,7 @@
     }
 
     function showAllDoneAlert(cb) {
-      alert("All done! (but there could still be some GUI updates)");
+      alert("All done! Check the map for the most optimal route!");
       cb();
     }
 
@@ -432,8 +432,8 @@
   // so the array of best routes is pass along through
   // the waterfall in `runGeneration`.
   function displayBestRoutes(bestRoutes, dbp_cb) {
-    $("#best-route-list").append(`<li>Route: ${bestRoutes[0].route}.
-    Length: ${bestRoutes[0].len}. RouteId: ${bestRoutes[0].routeId} </li>`);
+    $("#best-route-list").append(`<li><b>Route:</b> ${bestRoutes[0].route}.
+    <b>Length:</b> ${bestRoutes[0].len}. <b>RouteId:</b> ${bestRoutes[0].routeId} </li>`);
     dbp_cb(null, bestRoutes);
   }
 
@@ -514,7 +514,7 @@
     var lineStyle = {
       dashArray: [10, 20],
       weight: 5,
-      color: "#0000FF",
+      color: "#212121",
     };
 
     var fillStyle = {
