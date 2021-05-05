@@ -2,11 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Evo-TSP</title>
+    <title>Evo-TSP Final</title>
+    <link rel="shortcut icon" type="image/jpg" href="favicon.ico"/>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="Evolving solutions to a TSP instance" />
     <meta name="author" content="Robert Beane" />
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 
     <link
       rel="stylesheet"
@@ -22,13 +26,14 @@
     ></script>
   </head>
 
-  <body>
+  <body style="font-family: 'Roboto', sans-serif;">
     <h1>Evo-TSP</h1>
+    <h4>By Robert Beane</h4>
     <div>
       <h2>"Global" parameters</h2>
 
       <label for="runId-text-field">Run ID:</label>
-      <input type="text" id="runId-text-field" />
+      <input type="text" id="runId-text-field" placeholder="This is auto generated!"/>
 
       <label for="population-size-text-field">Population size:</label>
       <input type="text" id="population-size-text-field" />
@@ -37,11 +42,11 @@
       <input type="text" id="num-parents" />
     </div>
     <br>
-    <div id="map" style="height: 500px; width: 500px"></div>
+    <div id="map" style="height: 500px; width: 500px; border-style: solid"></div>
     <div id="best-run-routes">
       <h2>Best so far</h2>
       <ul>
-        <li>Best <code>routeId</code>: <span id="best-routeId"></span></li>
+        <li>Best routeId: <span id="best-routeId"></span></li>
         <li>Best length: <span id="best-length"></span></li>
         <li>
           Best path: <span id="best-path"></span>
@@ -56,10 +61,10 @@
     <div class="run-evolution">
       <h2>Evolve solutions!</h2>
 
-      <label for="num-generations">How many generations to run?</label>
+      <label for="num-generations">How many generations do you want to run?</label>
       <input type="text" id="num-generations" />
 
-      <button id="run-evolution">Run evolution</button>
+      <button id="run-evolution">Start the Evolutions!</button>
     </div>
 
     <div class="current-generation">
