@@ -433,7 +433,7 @@
   // the waterfall in `runGeneration`.
   function displayBestRoutes(bestRoutes, dbp_cb) {
     $("#best-route-list").append(`<li><b>Route:</b> ${bestRoutes[0].route}.
-    <b>Length:</b> ${bestRoutes[0].len}. <b>RouteId:</b> ${bestRoutes[0].routeId} </li>`);
+    <b>Length (in meters):</b> ${bestRoutes[0].len}. <b>RouteId:</b> ${bestRoutes[0].routeId} </li>`);
     dbp_cb(null, bestRoutes);
   }
 
