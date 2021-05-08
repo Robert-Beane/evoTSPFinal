@@ -79,10 +79,10 @@ This resource used a GET method to get a specific route using the [getRouteById(
 ## Lambdas
 This application uses five lambda functions, each of which were run on AWS. This allowed for less strain on the users' browser and making it easier to make adjustments on a live page (don’t have to wait for your cache to catch up to updates).
 ### `getBestRoutes()`
-This lambda took a runId, generation, and a numToReturn. It then queries the [routes](routes-1) database for the best routes with the given runId and generation. It then returns the top best routes based on the number that you want to be returned with a callback. The body 
+This lambda took a runId, generation, and a numToReturn. It then queries the [routes](#routes-1) database for the best routes with the given runId and generation. It then returns the top best routes based on the number that you want to be returned with a callback. The body 
 of this callback is the stringified JSON of the best routes. 
 ### `getRouteById()`
-This lambda simply took a single routeId. It used this routeId to do a GET within the [routes](routes-1) database to return all the information tied to that single routeId. Because each routeId was unique, the lambda can only return one route.
+This lambda simply took a single routeId. It used this routeId to do a GET within the [routes](#routes-1) database to return all the information tied to that single routeId. Because each routeId was unique, the lambda can only return one route.
 ### `mutateRoute()`
 This lambda takes a “parent” routeId, the lengthStoreThreshold, and the number of “children” you want. With these, it will generate children using the [2-opt mutation method](https://en.wikipedia.org/wiki/2-opt). It also adds one to the generation of the runId so it's easier 
 to see within the database. Once the children are generated, the function compares the lengths of the new routes to the lengthThreshold to determine if they should be kept. The “good” ones are the ones that we batchWrite to the database. 
