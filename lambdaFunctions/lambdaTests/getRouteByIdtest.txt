@@ -1,0 +1,14 @@
+{
+  "path": "/routes/Iq1rMX8dJ3R2eiqcV3XlLw",
+  "httpMethod": "GET",
+  "headers": {
+    "Accept": "*/*",
+    "content-type": "application/json; charset=UTF-8"
+  },
+  "queryStringParameters": null,
+  "pathParameters": {
+    "routeId": "Iq1rMX8dJ3R2eiqcV3XlLw"
+  },
+  "requestContext": null,
+  "body": null
+}

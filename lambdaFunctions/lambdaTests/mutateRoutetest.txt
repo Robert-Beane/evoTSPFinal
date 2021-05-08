@@ -1,0 +1,12 @@
+{
+  "path": "/routes",
+  "httpMethod": "POST",
+  "headers": {
+    "Accept": "*/*",
+    "content-type": "application/json; charset=UTF-8"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "requestContext": null,
+  "body": "{\"routeId\": \"-BQjx5rjmcgTPIHqDYM7dQ\", \"lengthStoreThreshold\": 4000000, \"numChildren\": 3}"
+}

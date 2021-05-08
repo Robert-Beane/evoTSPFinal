@@ -1,0 +1,16 @@
+{
+  "path": "/routes",
+  "httpMethod": "GET",
+  "headers": {
+    "Accept": "*/*",
+    "content-type": "application/json; charset=UTF-8"
+  },
+  "queryStringParameters": {
+    "runId": "SOMrRRh8q1Gd2Snq",
+    "generation": 0,
+    "numToReturn": 5
+  },
+  "pathParameters": null,
+  "requestContext": null,
+  "body": null
+}

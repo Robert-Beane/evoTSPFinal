@@ -1,0 +1,12 @@
+{
+  "path": "/cityDistance_data",
+  "httpMethod": "GET",
+  "headers": {
+    "Accept": "*/*",
+    "content-type": "application/json; charset=UTF-8"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "requestContext": null,
+  "body": null
+}
