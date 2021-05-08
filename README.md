@@ -49,12 +49,14 @@ Each of these technologies and how they are used are talked about in more detail
 
 # User Documentation
 Using the web app should be a pretty easy process. Upon opening the page, you will be greeted with something like this.
+
 ![Initial page](/media/freshEvo.png)
 
 You can see that several input boxes already have “starting point” numbers, these help determine the initial population size, the number of “parents” we want to keep from each generation, and the number of generations we want to run. 
 There is also a “Run ID” input box, however, this ID is randomly generated after you press the “Start the Evolutions!” button so we don’t need to give it one. Once you have determined the numbers you want to run with you press the 
 “Start the Evolutions!” button and watch the web app go to work. After letting it run through all of your generations, a popup will show up saying it is done and you should see a map with a route and info about that route. You are 
 also able to see the best route from previous generations.
+
 ![Complete EVOTSP](/media/finishedEvo.png)
 
 # Technical Details
