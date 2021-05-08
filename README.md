@@ -30,7 +30,7 @@
     - [Appendix I: Lambda Functions](#appendix-i-lambda-functions)
         - [`getBestRoutes()`](#getbestroutes-1)
         - [`getRouteById()`](#getroutebyid-1)
-        - [`mutateRoute()`](#mutateroute-1)
+        - [`mutateRoute()`](#mutateroute-2)
         - [`getCityInfo()`](#getcityinfo-1)
         - [`generateRandomRoute()`](#generaterandomroute-1)
     - [Appendix II: JavaScript](#appendix-ii-javascript)
